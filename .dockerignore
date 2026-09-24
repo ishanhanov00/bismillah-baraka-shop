@@ -1,0 +1,11 @@
+.env
+.git
+__pycache__
+*.pyc
+database/*.db*
+uploads/products/*
+uploads/receipts/*
+uploads/logo/*
+backups
+venv
+.venv

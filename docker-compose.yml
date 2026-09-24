@@ -1,0 +1,33 @@
+# Запуск:  docker compose up -d --build
+# Caddy сам получает бесплатный HTTPS-сертификат для вашего домена (укажите его в deploy/Caddyfile).
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./database:/app/database
+      - ./uploads:/app/uploads
+      - ./backups:/app/backups
+    expose:
+      - "8000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

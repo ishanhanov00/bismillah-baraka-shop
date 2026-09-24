@@ -1,0 +1,20 @@
+# systemd-служба (запуск без Docker). Установка:
+#   sudo cp deploy/bismillah-baraka.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now bismillah-baraka
+#   журнал: sudo journalctl -u bismillah-baraka -f
+[Unit]
+Description=BISMILLAH BARAKA shop (web + Telegram bot)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/bismillah-baraka
+ExecStart=/opt/bismillah-baraka/venv/bin/python run.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

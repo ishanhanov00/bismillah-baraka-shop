@@ -1,0 +1,13 @@
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
+aiogram>=3.13,<4.0
+SQLAlchemy>=2.0.30,<2.1
+aiosqlite>=0.20
+python-dotenv>=1.0
+python-multipart>=0.0.9
+Pillow>=10.4
+tzdata>=2024.1
+# Для PostgreSQL раскомментируйте строку ниже и укажите DATABASE_URL=postgresql+asyncpg://...
+# asyncpg>=0.29
+# Для фото в формате HEIC (iPhone) можно добавить:
+# pillow-heif>=0.18
